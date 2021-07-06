@@ -87,18 +87,16 @@ class CursorFragment : Fragment(), Serializable {
     fun onBackPressed(context: Activity): Boolean {
         val currentFragment =
             adapter!!.getRegisteredFragment(viewPager!!.currentItem) as OnBackPressListener
-        if (currentFragment != null) {
-            if ((currentFragment as Fragment).childFragmentManager.fragments.size == 0) {
-                if (stackkk.size > 1) {
-                    stackkk.pop()
-                    viewPager!!.currentItem = stackkk.lastElement()
-                    return true
-                } else {
-                    context.finish()
-                }
+        if ((currentFragment as Fragment).childFragmentManager.fragments.size == 0) {
+            if (stackkk.size > 1) {
+                stackkk.pop()
+                viewPager!!.currentItem = stackkk.lastElement()
+                return true
             } else {
-                return currentFragment.onBackPressed()
+                context.finish()
             }
+        } else {
+            return currentFragment.onBackPressed()
         }
         return true
     }
