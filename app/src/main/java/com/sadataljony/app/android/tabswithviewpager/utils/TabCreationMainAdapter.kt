@@ -1,46 +1,38 @@
-package com.sadataljony.app.android.tabswithviewpager.utils;
+package com.sadataljony.app.android.tabswithviewpager.utils
 
-import android.util.SparseArray;
-import android.view.ViewGroup;
-
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentStatePagerAdapter;
-import androidx.viewpager.widget.ViewPager;
-
-import java.util.ArrayList;
+import androidx.viewpager.widget.ViewPager
+import androidx.fragment.app.FragmentStatePagerAdapter
+import android.util.SparseArray
+import com.sadataljony.app.android.tabswithviewpager.utils.StaticValueParser
+import androidx.viewpager.widget.PagerAdapter
+import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import java.util.ArrayList
 
 /**
  * Created by Sadat Al Jony on 06/07/2021. Email: sadataljony@gmail.com
  */
-public class TabCreationMainAdapter extends FragmentStatePagerAdapter {
-
-    private int mNumOfTabs;
-    private ViewPager viewPager;
-    private SparseArray<Fragment> registeredFragments = new SparseArray<Fragment>();
-    private ArrayList<Fragment> fragments;
-
-    public TabCreationMainAdapter(FragmentManager fm, int NumOfTabs, ViewPager viewPager, ArrayList<Fragment> fragments) {
-        super(fm);
-        this.mNumOfTabs = NumOfTabs;
-        this.viewPager = viewPager;
-        this.fragments = fragments;
+class TabCreationMainAdapter(
+    fm: FragmentManager?,
+    private val mNumOfTabs: Int,
+    private val viewPager: ViewPager,
+    private val fragments: ArrayList<Fragment>
+) : FragmentStatePagerAdapter(
+    fm!!
+) {
+    private val registeredFragments = SparseArray<Fragment>()
+    override fun getItem(position: Int): Fragment {
+        StaticValueParser.viewPagerOvertime = viewPager
+        return fragments[position]
     }
 
-    @Override
-    public Fragment getItem(int position) {
-        StaticValueParser.viewPagerOvertime = viewPager;
-        return fragments.get(position);
+    override fun getItemPosition(`object`: Any): Int {
+        return POSITION_NONE
     }
 
-    @Override
-    public int getItemPosition(Object object) {
-        return POSITION_NONE;
-    }
-
-    @Override
-    public int getCount() {
-        return mNumOfTabs;
+    override fun getCount(): Int {
+        return mNumOfTabs
     }
 
     /**
@@ -51,11 +43,10 @@ public class TabCreationMainAdapter extends FragmentStatePagerAdapter {
      * @param position
      * @return
      */
-    @Override
-    public Object instantiateItem(ViewGroup container, int position) {
-        Fragment fragment = (Fragment) super.instantiateItem(container, position);
-        registeredFragments.put(position, fragment);
-        return fragment;
+    override fun instantiateItem(container: ViewGroup, position: Int): Any {
+        val fragment = super.instantiateItem(container, position) as Fragment
+        registeredFragments.put(position, fragment)
+        return fragment
     }
 
     /**
@@ -65,12 +56,10 @@ public class TabCreationMainAdapter extends FragmentStatePagerAdapter {
      * @param position
      * @param object
      */
-    @Override
-    public void destroyItem(ViewGroup container, int position, Object object) {
-        registeredFragments.remove(position);
-        super.destroyItem(container, position, object);
+    override fun destroyItem(container: ViewGroup, position: Int, `object`: Any) {
+        registeredFragments.remove(position)
+        super.destroyItem(container, position, `object`)
     }
-
 
     /**
      * Get the Fragment by position
@@ -78,7 +67,7 @@ public class TabCreationMainAdapter extends FragmentStatePagerAdapter {
      * @param position tab position of the fragment
      * @return
      */
-    public Fragment getRegisteredFragment(int position) {
-        return registeredFragments.get(position);
+    fun getRegisteredFragment(position: Int): Fragment {
+        return registeredFragments[position]
     }
 }

@@ -1,9 +1,8 @@
-package com.sadataljony.app.android.tabswithviewpager.utils;
+package com.sadataljony.app.android.tabswithviewpager.utils
 
 /**
  * Created by Sadat Al Jony on 06/07/2021. Email: sadataljony@gmail.com
  */
-public interface OnBackPressListener {
-
-    public boolean onBackPressed();
+interface OnBackPressListener {
+    fun onBackPressed(): Boolean
 }
