@@ -21,7 +21,7 @@ import java.util.*
 class CursorFragment : Fragment(), Serializable {
     protected var viewPager: ViewPager? = null
     private var tabLayout: TabLayout? = null
-    private var adapter: TabCreationMainAdapter? = null
+    private var adapter: TabAdapter? = null
     var stackkk = Stack<Int>()
     var tabPosition = 0
     var fragments: ArrayList<Fragment>? = ArrayList()
@@ -35,12 +35,12 @@ class CursorFragment : Fragment(), Serializable {
         viewPager = rootView.findViewById(R.id.pager)
         try {
             if (arguments != null) {
-                val tabsList = requireArguments().getCharSequenceArrayList(ConstName.TABS_NAME)
+                val tabsList = requireArguments().getCharSequenceArrayList(Constants.TABS_NAME)
                 for (i in tabsList!!.indices) {
                     with(tabLayout) { this?.addTab(newTab().setText(tabsList[i].toString())) }
                 }
                 fragments =
-                    requireArguments().getSerializable(ConstName.FRAGMENT_NAME) as ArrayList<Fragment>?
+                    requireArguments().getSerializable(Constants.FRAGMENT_NAME) as ArrayList<Fragment>?
                 requireArguments().clear()
             }
         } catch (e: Exception) {
@@ -51,7 +51,7 @@ class CursorFragment : Fragment(), Serializable {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        adapter = TabCreationMainAdapter(
+        adapter = TabAdapter(
             childFragmentManager,
             tabLayout!!.tabCount,
             viewPager!!,

@@ -13,7 +13,7 @@ import java.util.ArrayList
 /**
  * Created by Sadat Al Jony on 06/07/2021. Email: sadataljony@gmail.com
  */
-class TabCreationMainAdapter(
+class TabAdapter(
     fm: FragmentManager?,
     private val mNumOfTabs: Int,
     private val viewPager: ViewPager,

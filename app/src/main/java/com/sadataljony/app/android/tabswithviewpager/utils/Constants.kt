@@ -3,7 +3,7 @@ package com.sadataljony.app.android.tabswithviewpager.utils
 /**
  * Created by Sadat Al Jony on 06/07/2021. Email: sadataljony@gmail.com
  */
-class ConstName {
+class Constants {
 
     companion object {
         const val TABS_NAME = "tabs_name"

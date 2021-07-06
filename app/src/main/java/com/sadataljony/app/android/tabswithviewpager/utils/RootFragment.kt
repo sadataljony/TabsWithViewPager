@@ -8,6 +8,6 @@ import java.io.Serializable
  */
 open class RootFragment : Fragment(), OnBackPressListener, Serializable {
     override fun onBackPressed(): Boolean {
-        return BackPressImpl(this).onBackPressed()
+        return BackPress(this).onBackPressed()
     }
 }

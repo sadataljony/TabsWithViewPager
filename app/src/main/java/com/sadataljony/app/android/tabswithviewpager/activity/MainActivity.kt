@@ -9,7 +9,7 @@ import com.sadataljony.app.android.tabswithviewpager.R
 import com.sadataljony.app.android.tabswithviewpager.fragment.FragmentTwo
 import com.sadataljony.app.android.tabswithviewpager.fragment.FragmentOne
 import com.sadataljony.app.android.tabswithviewpager.fragment.FragmentThree
-import com.sadataljony.app.android.tabswithviewpager.utils.ConstName
+import com.sadataljony.app.android.tabswithviewpager.utils.Constants
 import com.sadataljony.app.android.tabswithviewpager.utils.CursorFragment
 import java.util.*
 
@@ -43,7 +43,7 @@ class MainActivity : AppCompatActivity() {
         tabsList.add("ONE")
         tabsList.add("TWO")
         tabsList.add("THREE")
-        bundle.putCharSequenceArrayList(ConstName.TABS_NAME, tabsList)
+        bundle.putCharSequenceArrayList(Constants.TABS_NAME, tabsList)
         sendFragments(bundle)
         carouselFragment!!.arguments = bundle
         fragmentManager.beginTransaction()
@@ -59,7 +59,7 @@ class MainActivity : AppCompatActivity() {
         fragments.add(fragment01)
         fragments.add(fragment02)
         fragments.add(fragment03)
-        bundle.putSerializable(ConstName.FRAGMENT_NAME, fragments)
+        bundle.putSerializable(Constants.FRAGMENT_NAME, fragments)
     }
 
     private fun setToolbar() {
